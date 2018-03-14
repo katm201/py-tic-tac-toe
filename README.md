@@ -8,7 +8,7 @@ You must have Python 3 (any version) downloaded and installed on your computer t
 
 Download the repo by typing:
 ```sh
-git clone <repo-url>
+git clone https://github.com/katm201/py-tic-tac-toe.git
 ```
 
 Navigate into the repo by typing:
