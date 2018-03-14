@@ -2,15 +2,17 @@ class TicTacToe:
     '''Game instance of Tic-Tac-Toe'''
     def __init__(self, player_1, player_2, size):
         self.players = [player_1, player_2]
-        self.board = self.__build_board__(size)
-        self.currentPlayer = self.players[0]
+        self.turn = 0
+        self.currentPlayer = self.players[self.turn]
         self.size = size
-
-    def print_names(self):
-        print(self.players)
+        self.board = self.__build_board__(size)
+        self.winner = None
 
     def show_current(self):
         print(self.currentPlayer)
+
+    def show_winner(self):
+        print(self.winner)
 
     def __build_board__(self, size):
         board = []
@@ -21,10 +23,10 @@ class TicTacToe:
             board.append(row)
         return board
 
-    def print_board(self):
+    def __render__(self):
         print(self.board)
 
     def play(self):
         row = input(self.currentPlayer + ' which row would you like? Pick 1 to ' + str(self.size) + ': ')
         column = input(self.currentPlayer + ' which column would you like? Pick 1 to ' + str(self.size) + ': ')
-        print(row, column)
+        self.__render__()
