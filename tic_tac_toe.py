@@ -33,9 +33,7 @@ class TicTacToe:
         self.board = self.__build_board__(size)
 
     def __validate_move__(self, row, column):
-        # check if in the proper range
-        # check if available
-        return True
+        return row < self.size && column < self.size && self.board[row][column] == ' '
 
     def __check_win__(self):
         # checks to see if a player has won
@@ -61,7 +59,7 @@ class TicTacToe:
 
     def __pick_move__(self, moveType):
         move = input(self.currentPlayer + ' which ' + moveType + ' would you like? Pick 1 to ' + str(self.size) + ': ')
-        return move
+        return move - 1
 
     def play(self):
         if self.status == 'started':
