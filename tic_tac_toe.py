@@ -1,5 +1,3 @@
-import os
-
 class TicTacToe:
     '''Game instance of Tic-Tac-Toe'''
     def __init__(self, player_1, player_2, size):
@@ -21,17 +19,19 @@ class TicTacToe:
         for x in range(size):
             row = []
             for x in range(size):
-                row.append('')
+                row.append(' ')
             board.append(row)
         return board
 
     def __render__(self):
-        print(self.board)
+        rows = list(map(lambda row: '\n ' + ' | '.join(row) + ' \n', self.board))
+        board = '___ ___ ___\n'.join(rows)
+        print(board)
 
     def play(self):
+
         row = input(self.currentPlayer + ' which row would you like? Pick 1 to ' + str(self.size) + ': ')
         column = input(self.currentPlayer + ' which column would you like? Pick 1 to ' + str(self.size) + ': ')
         self.__render__()
         self.turn = not self.turn
         self.currentPlayer = self.players[self.turn]
-        os.system('cls||clear')

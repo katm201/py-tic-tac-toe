@@ -1,3 +1,4 @@
+import os
 import tic_tac_toe
 
 def play_game():
@@ -13,5 +14,6 @@ def play_game():
     game.play()
     game.show_winner()
     game.show_current()
+    # os.system('cls||clear')
 
 play_game()
