@@ -1,3 +1,5 @@
+import os
+
 class TicTacToe:
     '''Game instance of Tic-Tac-Toe'''
     def __init__(self, player_1, player_2, size):
@@ -30,3 +32,4 @@ class TicTacToe:
         row = input(self.currentPlayer + ' which row would you like? Pick 1 to ' + str(self.size) + ': ')
         column = input(self.currentPlayer + ' which column would you like? Pick 1 to ' + str(self.size) + ': ')
         self.__render__()
+        os.system('cls||clear')
