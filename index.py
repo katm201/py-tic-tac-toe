@@ -6,14 +6,13 @@ def play_game():
 
     player_1 = input('Player 1, what\'s your name? ')
     player_2 = input('Player 2, what\'s your name? ')
-    size = input('How many rows/columns in your board? ')
+    size = input('How many rows/columns in your board? Minimum size is 3: ')
 
     game = tic_tac_toe.TicTacToe(player_1, player_2, int(size))
     
-    # play rounds on while loop
-    game.play()
-    game.show_winner()
-    game.show_current()
-    # os.system('cls||clear')
+    outcome = game.play()
+    while outcome != 'ended':
+      os.system('cls||clear')
+      outcome = game.play()
 
 play_game()
