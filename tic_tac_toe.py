@@ -10,7 +10,12 @@ class TicTacToe:
         self.status = 'started'
 
     def __show_outcome__(self, outcomeType):
-        # print win or loss message
+        if outcomeType == 'win':
+            print('Congratulations ' + self.winner + '! You\'ve won.')
+
+        if outcomeType == 'loss':
+            print('No more win conditions possible with the current moves available. Please play again!')
+
         self.status = 'ended'
         return self.status
 
@@ -74,11 +79,11 @@ class TicTacToe:
 
         win = self.__check_win__()
         if win:
-            self.__show_outcome__('win')
+            return self.__show_outcome__('win')
 
         loss = self.__check_loss__()
         if loss:
-            self.__show_outcome__('loss')
+            return self.__show_outcome__('loss')
 
         self.__render__()
         self.turn = not self.turn
