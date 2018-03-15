@@ -20,9 +20,7 @@ class TicTacToe:
         return self.status
 
     def __validate_config__(self):
-        # check name/info for each player
-        # check board size
-        return True
+        return self.players[0] != self.players[1] && self.size > 2 && self.size < 9:
 
     def __update_config__(self):
         print('I\'m sorry, that\'s not a valid game setup. ')
