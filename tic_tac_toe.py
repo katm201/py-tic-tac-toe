@@ -32,4 +32,6 @@ class TicTacToe:
         row = input(self.currentPlayer + ' which row would you like? Pick 1 to ' + str(self.size) + ': ')
         column = input(self.currentPlayer + ' which column would you like? Pick 1 to ' + str(self.size) + ': ')
         self.__render__()
+        self.turn = not self.turn
+        self.currentPlayer = self.players[self.turn]
         os.system('cls||clear')
