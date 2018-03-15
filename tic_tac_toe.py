@@ -25,8 +25,14 @@ class TicTacToe:
         return True
 
     def __update_config__(self):
-        # updates an invalid config
-        pass
+        print('I\'m sorry, that\'s not a valid game setup. ')
+        player_1 = input('Player 1, what\'s your name? You must enter a unique name. ')
+        player_2 = input('Player 2, what\'s your name? You must enter a unique name. ')
+        size = input('How many rows/columns in your board? Minimum size is 3, maximum size is 8: ')
+        self.players = [player_1, player_2]
+        self.size = size
+        self.currentPlayer = self.players[self.turn]
+        self.board = self.__build_board__(size)
 
     def __validate_move__(self, row, column):
         # check if in the proper range
@@ -61,13 +67,15 @@ class TicTacToe:
 
     def play(self):
         if self.status == 'started':
-            # run validate config logic
-            # if valid, update status
-            # if not valid, run update config logic on while loop so it'll keep going until there's a problem
-            pass
+            valid_config = self.__validate_config__()
+            if not valid_config:
+                self.__update_config__()
+                valid_config = self.__validate_config__()
+
+            self.status = 'in-progress'
 
         if self.status == 'ended':
-            # print message that the game has ended
+            print('I\'m sorry, the game has ended. Please start a new game to play.')
             return self.status
 
         row = self.__pick_move__('row')
@@ -75,7 +83,8 @@ class TicTacToe:
         valid_move = self.__validate_move__(row, column)
         while not valid_move:
             print('I\'m sorry, that\'s not a valid move. ')
-            # have them pick new moves and re-validate
+            row = self.__pick_move__('row')
+            column = self.__pick_move__('column')
 
         win = self.__check_win__()
         if win:
