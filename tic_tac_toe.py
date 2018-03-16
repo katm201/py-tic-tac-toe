@@ -99,7 +99,7 @@ class TicTacToe:
 
     def __pick_move__(self, moveType):
         move = input(self.currentPlayer + ' which ' + moveType + ' would you like? Pick 1 to ' + str(self.size) + ': ')
-        return move - 1
+        return int(move) - 1
 
     def play(self):
         if self.status == 'started':
@@ -124,11 +124,11 @@ class TicTacToe:
 
         self.board[row][column] = self.markers[self.turn]
 
-        win = self.__check_condition__()
+        win = self.__check_condition__('win')
         if win:
             return self.__show_outcome__('win')
 
-        no_wins = not self.__check_condition__()
+        no_wins = self.__check_condition__('no_wins')
         if no_wins:
             return self.__show_outcome__('no_wins')
 
