@@ -104,7 +104,7 @@ class TicTacToe:
         return int(move) - 1
 
     def play(self):
-        if self.status = 'in-progress':
+        if self.status == 'in-progress':
             os.system('cls||clear')
 
         if self.status == 'started':
@@ -118,6 +118,8 @@ class TicTacToe:
         if self.status == 'ended':
             print('I\'m sorry, the game has ended. Please start a new game to play.')
             return self.status
+
+        self.__render__()
 
         row = self.__pick_move__('row')
         column = self.__pick_move__('column')
