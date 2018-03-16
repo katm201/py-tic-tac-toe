@@ -21,7 +21,7 @@ class TicTacToe:
         return self.status
 
     def __validate_config__(self):
-        return self.players[0] != self.players[1] && self.size > 2 && self.size < 9:
+        return self.players[0] != self.players[1] and self.size > 2 and self.size < 9
 
     def __update_config__(self):
         print('I\'m sorry, that\'s not a valid game setup. ')
@@ -34,7 +34,7 @@ class TicTacToe:
         self.board = self.__build_board__(size)
 
     def __validate_move__(self, row, column):
-        return row < self.size && column < self.size && self.board[row][column] == ' '
+        return row < self.size and column < self.size and self.board[row][column] == ' '
 
     def __check_segment__(self, segment, checkType, marker):
         consistent = True
@@ -51,7 +51,7 @@ class TicTacToe:
 
     def __check_segments__(self, checkType, marker):
         for segment in range(self.size):
-            if !self.__check_segment__(segment, checkType, marker):
+            if not self.__check_segment__(segment, checkType, marker):
                 return False
 
         return True
@@ -128,7 +128,7 @@ class TicTacToe:
         if win:
             return self.__show_outcome__('win')
 
-        no_wins = !self.__check_condition__()
+        no_wins = not self.__check_condition__()
         if no_wins:
             return self.__show_outcome__('no_wins')
 
