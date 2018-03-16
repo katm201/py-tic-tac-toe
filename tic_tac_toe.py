@@ -36,27 +36,52 @@ class TicTacToe:
     def __validate_move__(self, row, column):
         return row < self.size && column < self.size && self.board[row][column] == ' '
 
-    def __check_rows__(self, checkType):
-        # logic for checking to see if there are 4 of a type in any row
-        # empty for checking loss, player marker for win
+    def __check_segment__(self, segment, checkType, marker):
+        consistent = True
+        for position in range(self.size):
+            if checkType == 'row':
+                consistent = self.board[segment][position] == marker
+            else:
+                consistent = self.board[position][segment] == marker
 
-    def __check_cols__(self, checkType):
-        # logic for checking to see if there are 4 of a type in any cols
-        # empty for checking loss, player marker for win
+            if not consistent:
+                return False
 
-    def __check_diagonals__(self, checkType):
-        # logic for checking to see if there are 4 of a type in either diagonals
-        # empty for checking loss, player marker for win
+        return True
+
+    def __check_segments__(self, checkType, marker):
+        for segment in range(self.size):
+            if !self.__check_segment__(segment, checkType, marker):
+                return False
+
+        return True
+
+    def __check_diagonals__(self, marker):
+        for segment in range(self.size):
+            if self.board[segment][segment] != marker:
+                return False
+
+        for segment in range(self.size):
+            if self.board[segment][self.size - segment - 1] != marker:
+                return False
+
+        return True
 
     def __check_condition__(self, conditionType):
-        condition = self.__check_rows__(conditionType)
+        if conditionType == 'win':
+            marker = self.markers[self.turn]
+        else:
+            marker = ' '
+
+        condition = self.__check_segments__('row', marker)
         if condition:
             return True
-        condition = self.__check_cols__(conditionType)
+        
+        condition = self.__check_segments__('row', marker)
         if condition:
             return True
-        # check 2 diagonals
-        return False
+        
+        return self.__check_diagonals__(marker)
 
     def __build_board__(self, size):
         board = []
