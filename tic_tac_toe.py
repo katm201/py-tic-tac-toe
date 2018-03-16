@@ -2,6 +2,7 @@ class TicTacToe:
     '''Game instance of Tic-Tac-Toe'''
     def __init__(self, player_1, player_2, size):
         self.players = [player_1, player_2]
+        self.markers = ['X', 'O']
         self.turn = 0
         self.currentPlayer = self.players[self.turn]
         self.size = size
@@ -13,7 +14,7 @@ class TicTacToe:
         if outcomeType == 'win':
             print('Congratulations ' + self.winner + '! You\'ve won.')
 
-        if outcomeType == 'loss':
+        if outcomeType == 'no_wins':
             print('No more win conditions possible with the current moves available. Please play again!')
 
         self.status = 'ended'
@@ -35,13 +36,27 @@ class TicTacToe:
     def __validate_move__(self, row, column):
         return row < self.size && column < self.size && self.board[row][column] == ' '
 
-    def __check_win__(self):
-        # checks to see if a player has won
-        return True
+    def __check_rows__(self, checkType):
+        # logic for checking to see if there are 4 of a type in any row
+        # empty for checking loss, player marker for win
 
-    def __check_loss__(self):
-        # checks to see if there are any possible win conditions
-        return True
+    def __check_cols__(self, checkType):
+        # logic for checking to see if there are 4 of a type in any cols
+        # empty for checking loss, player marker for win
+
+    def __check_diagonals__(self, checkType):
+        # logic for checking to see if there are 4 of a type in either diagonals
+        # empty for checking loss, player marker for win
+
+    def __check_condition__(self, conditionType):
+        condition = self.__check_rows__(conditionType)
+        if condition:
+            return True
+        condition = self.__check_cols__(conditionType)
+        if condition:
+            return True
+        # check 2 diagonals
+        return False
 
     def __build_board__(self, size):
         board = []
@@ -82,13 +97,15 @@ class TicTacToe:
             row = self.__pick_move__('row')
             column = self.__pick_move__('column')
 
-        win = self.__check_win__()
+        self.board[row][column] = self.markers[self.turn]
+
+        win = self.__check_condition__()
         if win:
             return self.__show_outcome__('win')
 
-        loss = self.__check_loss__()
-        if loss:
-            return self.__show_outcome__('loss')
+        no_wins = !self.__check_condition__()
+        if no_wins:
+            return self.__show_outcome__('no_wins')
 
         self.__render__()
         self.turn = not self.turn
