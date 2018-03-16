@@ -1,4 +1,3 @@
-import os
 import tic_tac_toe
 
 def play_game():
@@ -12,7 +11,6 @@ def play_game():
     
     outcome = game.play()
     while outcome != 'ended':
-      os.system('cls||clear')
       outcome = game.play()
 
 play_game()

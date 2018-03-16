@@ -1,3 +1,5 @@
+import os
+
 class TicTacToe:
     '''Game instance of Tic-Tac-Toe'''
     def __init__(self, player_1, player_2, size):
@@ -98,10 +100,13 @@ class TicTacToe:
         print(board)
 
     def __pick_move__(self, moveType):
-        move = input(self.currentPlayer + ' which ' + moveType + ' would you like? Pick 1 to ' + str(self.size) + ': ')
+        move = input(self.currentPlayer + ', which ' + moveType + ' would you like? Pick 1 to ' + str(self.size) + ': ')
         return int(move) - 1
 
     def play(self):
+        if self.status = 'in-progress':
+            os.system('cls||clear')
+
         if self.status == 'started':
             valid_config = self.__validate_config__()
             if not valid_config:
