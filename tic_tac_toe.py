@@ -121,6 +121,7 @@ class TicTacToe:
             print('I\'m sorry, that\'s not a valid move. ')
             row = self.__pick_move__('row')
             column = self.__pick_move__('column')
+            valid_move = self.__validate_move__(row, column)
 
         self.board[row][column] = self.markers[self.turn]
 
